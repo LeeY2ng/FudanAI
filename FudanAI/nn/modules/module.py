@@ -86,3 +86,9 @@ class Module(metaclass=ABCMeta):
         for p in self.parameters():
             if p.grad is not None:
                 p.grad = None
+
+    def apply(self, fn) -> "Module":
+        fn(self)
+        for module in self._modules.values():
+            module.apply(fn)
+        return self
