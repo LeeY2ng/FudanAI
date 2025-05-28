@@ -11,6 +11,8 @@ class Model(nn.Module):
         self.linear1 = nn.Linear(in_features, 5, bias=True)
         self.relu1 = nn.ReLU()
         self.linear2 = nn.Linear(5, 1, bias=True)
+        nn.init.normal_(self.linear1.weight, 0, 1)
+        nn.init.normal_(self.linear2.weight, 0, 2)
 
     def forward(self, input):
         output = self.linear1(input)
